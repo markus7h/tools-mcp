@@ -1,0 +1,12 @@
+{
+  "name": "case-assist",
+  "description": "case-assist — fallgetriebene Subsumtionsassistenz (HTTP). Server ruft nie ein LLM: Client extrahiert selbst (extraction_prompt → submit_case).",
+  "version": "1.0.0",
+  "author": { "name": "Markus" },
+  "userConfig": {
+    "url": { "type": "string", "title": "case-assist URL", "description": "URL des case-assist MCP-Servers", "default": "http://myubuntu:5777/mcp" }
+  },
+  "mcpServers": {
+    "case-assist": { "type": "http", "url": "${user_config.url}" }
+  }
+}

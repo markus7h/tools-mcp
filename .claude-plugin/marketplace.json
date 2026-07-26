@@ -3,6 +3,7 @@
   "owner": { "name": "Markus" },
   "plugins": [
     { "name": "ai-rem",       "source": "./plugins/ai-rem",       "description": "Knowledge-Graph-Memory (HTTP)" },
+    { "name": "case-assist",  "source": "./plugins/case-assist",  "description": "Subsumtionsassistenz (HTTP)" },
     { "name": "doc-graph",    "source": "./plugins/doc-graph",    "description": "Doc-Graph (HTTP)" },
     { "name": "tools",        "source": "./plugins/tools",        "description": "tools-registry Script-Runner (stdio)" },
     { "name": "mykeyvault",   "source": "./plugins/mykeyvault",   "description": "Bitwarden-Vault-Zugriff (stdio)" },
