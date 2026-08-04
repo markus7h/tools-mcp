@@ -1,10 +1,10 @@
 {
   "name": "doc-graph",
   "description": "Doc-Graph — Paperless-Dokumentgraph (HTTP)",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": { "name": "Markus" },
   "userConfig": {
-    "url": { "type": "string", "title": "doc-graph URL", "description": "URL des doc-graph MCP-Servers", "default": "http://myubuntu:5775/mcp" }
+    "url": { "type": "string", "title": "doc-graph URL", "description": "URL des doc-graph MCP-Servers", "default": "http://mystorage:5775/mcp" }
   },
   "mcpServers": {
     "doc-graph": { "type": "http", "url": "${user_config.url}" }
