@@ -4,7 +4,7 @@
   "version": "1.0.1",
   "author": { "name": "Markus" },
   "userConfig": {
-    "url": { "type": "string", "title": "case-assist URL", "description": "URL des case-assist MCP-Servers", "default": "http://mystorage:5777/mcp" }
+    "url": { "type": "string", "title": "case-assist URL", "description": "URL des case-assist MCP-Servers", "default": "https://case-assist.lan/mcp" }
   },
   "mcpServers": {
     "case-assist": { "type": "http", "url": "${user_config.url}" }
