@@ -37,6 +37,12 @@ curl -s localhost:3458/health                                            # → o
 curl -s --data-binary @doc.html "localhost:3458/html_to_pdf?theme=magic3&wait_ms=6000" -o out.pdf
 ```
 
+Regressionstest für Tabellen über mehrere Seiten (braucht `pdftotext`):
+
+```bash
+python3 convert-service/test_tables.py http://localhost:3458
+```
+
 Deploy auf den zentralen Host: `../deploy-convert.sh` (siehe Haupt-README).
 
 > **Sicherheit:** nur im vertrauenswürdigen LAN binden, nie öffentlich. `CONVERT_TOKEN` setzen.

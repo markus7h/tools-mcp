@@ -108,6 +108,10 @@ DESIGNS = {
   td { padding: 6px 10px; border-bottom: 1px solid #e5e7eb; }
   tr:nth-child(even) td { background: #f9fafb; }
   th[style*="text-align: right"], td[style*="text-align: right"] { white-space: nowrap; }
+  /* Tabellen über Seitengrenzen: Kopf wiederholen, Zeilen nicht zerreißen */
+  thead { display: table-header-group; }
+  tfoot { display: table-footer-group; }
+  tr { break-inside: avoid; }
   blockquote { border-left: 3px solid #fa4a05; margin: 10px 0; padding: 6px 14px; color: #4b5563; font-style: italic; background: #fef1ea; }
   hr { border: none; border-top: 1px solid #e5e7eb; margin: 20px 0; }
   ul, ol { margin: 6px 0; padding-left: 22px; }
@@ -153,6 +157,10 @@ DESIGNS = {
   td { padding: 5px 10px; border-bottom: 0; }
   table tr:last-child td { border-bottom: 1.2pt solid #000; }
   tr:nth-child(even) td { background: transparent; }
+  /* Tabellen über Seitengrenzen: Kopf wiederholen, Zeilen nicht zerreißen */
+  thead { display: table-header-group; }
+  tfoot { display: table-footer-group; }
+  tr { break-inside: avoid; }
   blockquote { border-left: 4px solid #388E3C; margin: 10px 0 10px 16px; padding: 2px 12px; color: #333333; font-style: italic; background: transparent; }
   hr { border: none; border-top: 0.5pt solid #D0D0D0; margin: 16px 0; }
   ul, ol { margin: 6px 0; padding-left: 24px; }
