@@ -73,6 +73,11 @@ td.num, th.num, td:not(:first-child), th:not(:first-child) { text-align: right;
 /* Zahlenspalten (Markdown --:) nicht umbrechen — verhindert 2-Zeilen-Effekt bei schmalem Inhalt */
 th[style*="text-align: right"], td[style*="text-align: right"] { white-space: nowrap; }
 
+/* Tabellen über Seitengrenzen: Kopf wiederholen, Zeilen nicht zerreißen */
+thead { display: table-header-group; }
+tfoot { display: table-footer-group; }
+tr { break-inside: avoid; }
+
 /* Bewertung in Zahlen/Deltas */
 .good, .pos { color: var(--accent-strong); }
 .bad, .neg  { color: var(--bad); }
