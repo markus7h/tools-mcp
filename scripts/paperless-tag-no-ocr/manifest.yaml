@@ -1,0 +1,53 @@
+name: paperless_tag_no_ocr
+description: >
+  Taggt alle Paperless-Dokumente ohne OCR-Text (leerer content) mit einem
+  Sammel-Tag und entfernt den Tag wieder, sobald ein Dokument doch Text
+  bekommen hat. Macht die Luecke zwischen Paperless-Gesamtzahl und dem
+  paperless-ai-Index sichtbar: textlose Dokumente (Fotos, Scans ohne OCR)
+  werden bewusst nie eingebettet. Ohne apply=true nur Trockenlauf.
+  Laeuft per ssh im paperless-ai-Container, der die Paperless-Credentials
+  bereits als Env mitbringt.
+exec: ./run.sh
+inputs:
+  apply:
+    type: boolean
+    description: true = Tag anlegen und setzen/entfernen. Default false (nur zaehlen).
+    required: false
+  tag_name:
+    type: string
+    description: 'Name des Sammel-Tags. Default "ohne OCR-Text".'
+    required: false
+  host:
+    type: string
+    description: SSH-Host mit dem paperless-ai-Container. Default mystorage.
+    required: false
+  container:
+    type: string
+    description: Name des paperless-ai-Containers. Default paperless-ai.
+    required: false
+outputs:
+  documents_without_text:
+    type: number
+    description: Anzahl Paperless-Dokumente mit leerem content.
+  stale_tags:
+    type: number
+    description: Dokumente, die den Tag trugen, inzwischen aber Text haben.
+  tag_id:
+    type: number
+    description: ID des Tags in Paperless (null, wenn er im Trockenlauf noch fehlt).
+  tagged:
+    type: number
+    description: Anzahl neu/erneut getaggter Dokumente (0 im Trockenlauf).
+  untagged:
+    type: number
+    description: Anzahl Dokumente, denen der veraltete Tag entfernt wurde.
+  applied:
+    type: boolean
+    description: Ob geschrieben wurde.
+  documents_with_tag:
+    type: number
+    description: Kontrollzaehlung nach dem Schreiben (fehlt im Trockenlauf).
+requires:
+  - ssh
+  - python3
+ai_rem_entity: tool_paperless_tag_no_ocr
