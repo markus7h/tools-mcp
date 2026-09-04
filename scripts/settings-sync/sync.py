@@ -12,12 +12,16 @@ def load_json(path):
 
 
 def diff_settings(local, tmpl):
-    diffs = {"general": [], "allow_missing": [], "deny_missing": [], "hooks_missing": []}
+    diffs = {"general": [], "default_mode": None, "allow_missing": [], "deny_missing": [], "hooks_missing": []}
 
     for key, expected in tmpl.get("general", {}).items():
         actual = local.get(key)
         if actual != expected:
             diffs["general"].append({"key": key, "actual": actual, "expected": expected})
+
+    want_mode = tmpl.get("permissions_default_mode")
+    if want_mode and local.get("permissions", {}).get("defaultMode") != want_mode:
+        diffs["default_mode"] = want_mode
 
     local_allow = set(local.get("permissions", {}).get("allow", []))
     for p in tmpl.get("permissions_allow_portable", []):
@@ -47,6 +51,10 @@ def apply_diffs(local, tmpl, diffs):
         local[d["key"]] = d["expected"]
         changed = True
 
+    if diffs["default_mode"]:
+        local.setdefault("permissions", {})["defaultMode"] = diffs["default_mode"]
+        changed = True
+
     if diffs["allow_missing"]:
         local.setdefault("permissions", {}).setdefault("allow", [])
         local["permissions"]["allow"].extend(diffs["allow_missing"])
@@ -69,6 +77,11 @@ def format_report(diffs):
         for d in diffs["general"]:
             lines.append(f"  {d['key']}: {d['actual']} -> {d['expected']}")
             total += 1
+
+    if diffs["default_mode"]:
+        lines.append("## Permission-Default")
+        lines.append(f"  defaultMode -> {diffs['default_mode']}")
+        total += 1
 
     if diffs["allow_missing"]:
         lines.append("## Fehlende Allow-Permissions")
